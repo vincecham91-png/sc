@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章 人体的呼吸 - 全能学习手册</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; scroll-behavior: smooth; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .quiz-card { display: none; }
+        .quiz-card.active { display: block; }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="sticky top-0 z-50 glass-morphism shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-emerald-600">第4章 人体的呼吸</h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#section4.1" class="hover:text-emerald-500">4.1 系统组成</a>
+                <a href="#section4.2" class="hover:text-emerald-500">4.2 呼吸运动</a>
+                <a href="#section4.3" class="hover:text-emerald-500">4.3 呼吸作用</a>
+                <a href="#section4.4" class="hover:text-emerald-500">4.4 气体交换</a>
+                <a href="#quiz-zone" class="text-red-500 font-bold hover:underline">考点测试</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        
+        <section id="section4.1" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-emerald-600 text-white px-3 py-1 rounded-md mr-4">4.1</span>
+                <h2 class="text-2xl font-bold">呼吸系统的组成与结构</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-400">
+                    <h3 class="font-bold text-emerald-800 mb-2">呼吸道 (通道)</h3>
+                    <ul class="list-disc ml-5 space-y-1 text-sm">
+                        <li><strong>鼻腔：</strong> 鼻毛阻挡灰尘，黏膜温暖、湿润并清洁空气。</li>
+                        <li><strong>咽喉：</strong> 气体与食物的共同通道；<strong>会厌软骨</strong>防止食物误入气管。</li>
+                        <li><strong>气管与支气管：</strong> C型软骨支撑，纤毛分泌黏液捕捉细菌形成“痰”。</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                    <h3 class="font-bold text-blue-800 mb-2">肺 (核心器官)</h3>
+                    <p class="text-sm">气体交换的场所。<strong>肺泡</strong>是功能单位，其特点：数量多、壁极薄（一层细胞）、外包毛细血管网。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section4.2" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-blue-600 text-white px-3 py-1 rounded-md mr-4">4.2</span>
+                <h2 class="text-2xl font-bold">呼吸运动的原理 (肺的通气)</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left border-collapse">
+                    <thead class="bg-blue-600 text-white">
+                        <tr>
+                            <th class="p-3 border">过程</th>
+                            <th class="p-3 border">呼吸肌 (肋间肌/膈肌)</th>
+                            <th class="p-3 border">胸廓容积</th>
+                            <th class="p-3 border">肺内压强</th>
+                            <th class="p-3 border">结果</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="p-3 font-bold text-blue-600">吸气</td>
+                            <td class="p-3">收缩 (膈顶下降)</td>
+                            <td class="p-3">增大</td>
+                            <td class="p-3">小于大气压</td>
+                            <td class="p-3">外界气体进入肺</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-bold text-red-600">呼气</td>
+                            <td class="p-3">舒张 (膈顶上升)</td>
+                            <td class="p-3">缩小</td>
+                            <td class="p-3">大于大气压</td>
+                            <td class="p-3">肺内气体排出</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-4 text-xs text-slate-500 italic">注：呼吸运动实现了肺与外界的气体交换，动力来自呼吸肌的收缩舒张，原理是压强差。</p>
+        </section>
+
+        <section id="section4.3" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-purple-600 text-white px-3 py-1 rounded-md mr-4">4.3</span>
+                <h2 class="text-2xl font-bold">呼吸作用 (Cellular Respiration)</h2>
+            </div>
+            <div class="space-y-4">
+                <div class="p-6 bg-slate-800 text-white rounded-xl">
+                    <p class="text-center font-mono text-lg mb-2">葡萄糖 + 氧气 → 二氧化碳 + 水 + 能量</p>
+                    <p class="text-center text-xs text-slate-400">场所：细胞（线粒体） | 实质：分解有机物，释放能量</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="border p-4 rounded-lg bg-purple-50">
+                        <h4 class="font-bold mb-2">呼吸运动</h4>
+                        <p class="text-xs">物理变化。指吸气和呼气动作，可见可控。目的是交换气体。</p>
+                    </div>
+                    <div class="border p-4 rounded-lg bg-orange-50">
+                        <h4 class="font-bold mb-2">呼吸作用</h4>
+                        <p class="text-xs">化学变化。细胞内氧化分解过程，不可见不可控。目的是提供能量。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section4.4" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-cyan-600 text-white px-3 py-1 rounded-md mr-4">4.4</span>
+                <h2 class="text-2xl font-bold">体内的气体交换</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="grid md:grid-cols-3 gap-4 text-center">
+                    <div class="p-3 bg-cyan-50 rounded border border-cyan-100">
+                        <p class="text-xs font-bold">1. 肺的通气</p>
+                        <p class="text-[10px]">外界 ↔ 肺泡</p>
+                    </div>
+                    <div class="p-3 bg-cyan-50 rounded border border-cyan-100">
+                        <p class="text-xs font-bold">2. 肺泡内的气体交换</p>
+                        <p class="text-[10px]">肺泡 ↔ 血液 (扩散作用)</p>
+                    </div>
+                    <div class="p-3 bg-cyan-50 rounded border border-cyan-100">
+                        <p class="text-xs font-bold">3. 组织里的气体交换</p>
+                        <p class="text-[10px]">血液 ↔ 组织细胞 (扩散作用)</p>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-4 rounded">
+                    <h4 class="font-bold text-sm mb-2">气体成分变化 (吸入 vs 呼出)</h4>
+                    <ul class="text-xs space-y-1">
+                        <li><strong>氧气：</strong> 21% → 16% (减少)</li>
+                        <li><strong>二氧化碳：</strong> 0.03% → 4% (增加约100倍)</li>
+                        <li><strong>氮气：</strong> 78% → 78% (基本不变)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-zone" class="bg-slate-900 text-white p-6 md:p-12 rounded-3xl shadow-xl overflow-hidden relative">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex flex-col">
+                    <h2 class="text-3xl font-black italic tracking-tighter">RESPIRATION QUIZ</h2>
+                    <p class="text-xs text-slate-400">第4章 综合能力测试</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="switchTab('choice')" id="tab-choice" class="px-4 py-1 rounded-full bg-emerald-600 text-sm">选择题 (20)</button>
+                    <button onclick="switchTab('short')" id="tab-short" class="px-4 py-1 rounded-full bg-slate-700 text-sm">简答题 (10)</button>
+                </div>
+            </div>
+
+            <div id="choice-container" class="tab-content active min-h-[400px]">
+                <div id="choice-quiz-list">
+                    </div>
+                <div class="mt-8 flex justify-between items-center">
+                    <button onclick="prevChoice()" class="px-6 py-2 bg-slate-700 rounded-lg hover:bg-slate-600">上一题</button>
+                    <span id="choice-progress" class="text-slate-400 font-mono">1 / 20</span>
+                    <button onclick="nextChoice()" class="px-6 py-2 bg-emerald-600 rounded-lg hover:bg-emerald-500">下一题</button>
+                </div>
+            </div>
+
+            <div id="short-container" class="tab-content min-h-[400px]">
+                <div id="short-quiz-list">
+                    </div>
+                <div class="mt-8 flex justify-between items-center">
+                    <button onclick="prevShort()" class="px-6 py-2 bg-slate-700 rounded-lg hover:bg-slate-600">上一题</button>
+                    <span id="short-progress" class="text-slate-400 font-mono">1 / 10</span>
+                    <button onclick="nextShort()" class="px-6 py-2 bg-cyan-600 rounded-lg hover:bg-cyan-500">下一题</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white py-12 border-t mt-20 text-center">
+        <p class="text-slate-500 text-sm">第4章《人体的呼吸》全能学习手册 | 科学组编制</p>
+    </footer>
+
+    <script>
+        const choices = [
+            { q: "人体呼吸系统的主要器官是？", a: "C", o: ["鼻腔", "气管", "肺", "支气管"] },
+            { q: "呼吸道不仅是气体通道，还能使到达肺部的气体？", a: "D", o: ["温暖", "湿润", "清洁", "以上都是"] },
+            { q: "正常情况下，人体食物和气体的共同通道是？", a: "B", o: ["口腔", "咽", "喉", "食道"] },
+            { q: "痰液产生于？", a: "C", o: ["鼻腔", "喉部", "气管和支气管", "肺泡"] },
+            { q: "吸气时，膈肌和肋间肌的状态分别是？", a: "A", o: ["收缩、收缩", "舒张、舒张", "收缩、舒张", "舒张、收缩"] },
+            { q: "吸气时，胸廓容积和肺内气压的变化是？", a: "B", o: ["容积缩小，气压升高", "容积扩大，气压下降", "容积扩大，气压升高", "容积缩小，气压下降"] },
+            { q: "呼出的气体中，含量最多的气体是？", a: "A", o: ["氮气", "氧气", "二氧化碳", "水蒸气"] },
+            { q: "进入肺泡的氧气进入血液需经过几层细胞？", a: "B", o: ["1层", "2层", "3层", "4层"] },
+            { q: "肺泡内的气体交换和组织里的气体交换，其原理都是？", a: "C", o: ["呼吸运动", "气压差", "扩散作用", "主动运输"] },
+            { q: "呼吸作用的主要场所是？", a: "D", o: ["肺泡", "血液", "细胞质", "线粒体"] },
+            { q: "下列属于化学变化的是？", a: "B", o: ["肺的通气", "呼吸作用", "吸气动作", "呼气动作"] },
+            { q: "一氧化碳中毒是因为CO与什么结合力极强？", a: "A", o: ["血红蛋白", "血浆", "白细胞", "血小板"] },
+            { q: "人体呼出的二氧化碳最终产生的部位是？", a: "D", o: ["肺泡", "血液", "气管", "组织细胞"] },
+            { q: "溺水死亡的主要原因是阻断了哪个环节？", a: "A", o: ["肺的通气", "肺泡内的交换", "气体运输", "组织里的交换"] },
+            { q: "肺泡外缠绕着丰富的毛细血管，这有利于？", a: "B", o: ["肺与外界交换", "肺泡与血液交换", "增加肺活量", "过滤灰尘"] },
+            { q: "电子烟产生的“白烟”本质上是？", a: "C", o: ["水蒸气", "纯氧气", "化学物质组成的气溶胶", "二氧化碳"] },
+            { q: "PM2.5是指大气中直径小于或等于2.5微米的？", a: "B", o: ["细菌", "颗粒物", "病毒", "氧分子"] },
+            { q: "完成吸气的一瞬间，肺内气压与大气压的关系是？", a: "C", o: ["大于", "小于", "等于", "零"] },
+            { q: "伍连德医生发明的口罩主要用于防控哪种传播途径的鼠疫？", a: "D", o: ["血液传播", "水源传播", "接触传播", "呼吸道传播"] },
+            { q: "呼吸作用的实质是？", a: "B", o: ["吸入氧气，呼出二氧化碳", "分解有机物，释放能量", "合成有机物，贮存能量", "消耗有机物，产生水分"] }
+        ];
+
+        const shortAnswers = [
+            { q: "请简述肺泡适于气体交换的结构特点。", a: "1.数量多，表面积大；2.壁极薄，仅一层上皮细胞构成；3.外包绕丰富的毛细血管网和弹性纤维。" },
+            { q: "为什么说用鼻呼吸比用口呼吸更科学？", a: "鼻腔内有鼻毛可以阻挡灰尘，黏膜分泌黏液可以湿润并清洁空气，黏膜内丰富的毛细血管可以温暖空气，减轻对肺的刺激。" },
+            { q: "请描述吸气动作时膈肌的变化及其导致的物理结果。", a: "膈肌收缩，膈顶下降，胸廓上下径增大，胸廓容积扩大，肺随之扩张，肺内气压下降并低于大气压，外界气体进入肺。" },
+            { q: "比较呼吸运动与呼吸作用的区别。", a: "呼吸运动是肺与外界的气体交换（物理过程）；呼吸作用是细胞内有机物的氧化分解（化学过程），为生命活动提供能量。" },
+            { q: "解释为什么一氧化碳中毒会导致人死亡？", a: "一氧化碳与血红蛋白的结合能力比氧气强很多且不易分离，使血红蛋白丧失运输氧的能力，导致组织细胞缺氧死亡。" },
+            { q: "请写出呼吸作用的化学方程式。", a: "C6H12O6 + 6O2 →(酶) 6CO2 + 6H2O + 能量" },
+            { q: "痰是如何产生的？为什么不能随地吐痰？", a: "痰由气管和支气管黏膜表面的纤毛向咽喉方向摆动，将粘住细菌、灰尘的黏液推向喉部而成。随地吐痰会散布细菌，传播呼吸道疾病。" },
+            { q: "当膈肌由收缩状态变为舒张状态时，人体处于吸气还是呼气状态？", a: "处于呼气状态。因为膈肌舒张导致膈顶上升，胸廓容积减小，肺内压升高。" },
+            { q: "为什么说电子烟对青少年的大脑发育有害？", a: "电子烟含有高浓度尼古丁，会损害正在发育的大脑突触连接，长期影响注意力、学习能力和情绪控制。" },
+            { q: "肺泡内的氧气是如何进入血液的？", a: "通过扩散作用。肺泡中氧气浓度高于血液，氧气自发地从高浓度向低浓度一侧（血液）扩散。" }
+        ];
+
+        let currentChoiceIdx = 0;
+        let currentShortIdx = 0;
+
+        function initQuiz() {
+            // 初始化选择题
+            const cList = document.getElementById('choice-quiz-list');
+            choices.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = `quiz-card ${i === 0 ? 'active' : ''}`;
+                div.innerHTML = `
+                    <div class="mb-4 text-emerald-400 font-mono text-sm">QUESTION ${i+1}</div>
+                    <p class="text-xl font-bold mb-6 leading-tight">${item.q}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.o.map((opt, idx) => `<button onclick="checkAnswer(${i}, '${String.fromCharCode(65+idx)}')" class="p-4 text-left bg-slate-800 rounded-xl hover:bg-emerald-900 transition-all border border-slate-700 hover:border-emerald-500">${String.fromCharCode(65+idx)}. ${opt}</button>`).join('')}
+                    </div>
+                    <div id="choice-ans-${i}" class="hidden mt-6 p-4 bg-emerald-900/40 text-emerald-300 rounded-lg border border-emerald-700/50">
+                        <span class="font-bold">正确答案: ${item.a}</span>
+                    </div>
+                `;
+                cList.appendChild(div);
+            });
+
+            // 初始化简答题
+            const sList = document.getElementById('short-quiz-list');
+            shortAnswers.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = `quiz-card ${i === 0 ? 'active' : ''}`;
+                div.innerHTML = `
+                    <div class="mb-4 text-cyan-400 font-mono text-sm">CONCEPTUAL QUESTION ${i+1}</div>
+                    <p class="text-xl font-bold mb-6 leading-tight">${item.q}</p>
+                    <div class="p-6 bg-slate-800/50 border border-dashed border-slate-600 rounded-2xl">
+                        <p class="text-slate-400 mb-4 italic">请先在脑海中组织语言，然后对比参考答案：</p>
+                        <button onclick="toggleShortAns(${i})" class="px-6 py-2 bg-cyan-600 rounded-full text-sm font-bold hover:bg-cyan-500 transition-colors">显示/隐藏解析</button>
+                        <div id="short-ans-${i}" class="hidden mt-6 pt-6 border-t border-slate-700 text-lg text-cyan-100 leading-relaxed">${item.a}</div>
+                    </div>
+                `;
+                sList.appendChild(div);
+            });
+        }
+
+        function switchTab(type) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(`${type}-container`).classList.add('active');
+            
+            document.getElementById('tab-choice').className = `px-4 py-1 rounded-full text-sm font-bold transition-all ${type === 'choice' ? 'bg-emerald-600' : 'bg-slate-700'}`;
+            document.getElementById('tab-short').className = `px-4 py-1 rounded-full text-sm font-bold transition-all ${type === 'short' ? 'bg-cyan-600' : 'bg-slate-700'}`;
+        }
+
+        function checkAnswer(i, userChoice) {
+            document.getElementById(`choice-ans-${i}`).classList.remove('hidden');
+        }
+
+        function toggleShortAns(i) {
+            const el = document.getElementById(`short-ans-${i}`);
+            el.classList.toggle('hidden');
+        }
+
+        function nextChoice() {
+            if (currentChoiceIdx < choices.length - 1) {
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.remove('active');
+                currentChoiceIdx++;
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+        function prevChoice() {
+            if (currentChoiceIdx > 0) {
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.remove('active');
+                currentChoiceIdx--;
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+
+        function nextShort() {
+            if (currentShortIdx < shortAnswers.length - 1) {
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.remove('active');
+                currentShortIdx++;
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+        function prevShort() {
+            if (currentShortIdx > 0) {
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.remove('active');
+                currentShortIdx--;
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            document.getElementById('choice-progress').innerText = `${currentChoiceIdx + 1} / ${choices.length}`;
+            document.getElementById('short-progress').innerText = `${currentShortIdx + 1} / ${shortAnswers.length}`;
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>

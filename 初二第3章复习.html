@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3章 协调与恒定 - 全能学习手册</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; scroll-behavior: smooth; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .quiz-card { display: none; }
+        .quiz-card.active { display: block; }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- 顶部导航 -->
+    <nav class="sticky top-0 z-50 glass-morphism shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-600">第3章 协调与恒定</h1>
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#section3.1" class="hover:text-blue-500">3.1 神经系统</a>
+                <a href="#section3.2" class="hover:text-blue-500">3.2 神经传递</a>
+                <a href="#section3.3" class="hover:text-blue-500">3.3 激素调节</a>
+                <a href="#section3.4" class="hover:text-blue-500">3.4 内环境</a>
+                <a href="#quiz-zone" class="text-red-500 font-bold hover:underline">考点测试</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主体内容 -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        
+        <!-- 3.1 章节 -->
+        <section id="section3.1" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-blue-600 text-white px-3 py-1 rounded-md mr-4">3.1</span>
+                <h2 class="text-2xl font-bold">人体的神经系统组成</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-bold text-blue-800 mb-2">核心结构图</h3>
+                    <ul class="list-disc ml-5 space-y-2">
+                        <li><strong>中枢神经系统：</strong> 脑（大脑、小脑、脑干）和 脊髓。</li>
+                        <li><strong>周围神经系统：</strong> 脑神经（12对）和 脊神经（31对）。</li>
+                    </ul>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold border-b-2 border-blue-200 mb-2">神经元 (Neuron)</h4>
+                        <p class="text-sm leading-relaxed">神经系统的基本结构和功能单位。由<strong>细胞体</strong>和<strong>突起</strong>（轴突、树突）组成。功能：接受刺激、产生兴奋、传导兴奋。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold border-b-2 border-blue-200 mb-2">脑的功能</h4>
+                        <ul class="text-sm list-disc ml-4">
+                            <li>大脑：智力中枢、感觉、语言、运动。</li>
+                            <li>小脑：协调肌肉运动，维持身体平衡。</li>
+                            <li>脑干：呼吸、心跳等生命中枢。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.2 章节 -->
+        <section id="section3.2" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-green-600 text-white px-3 py-1 rounded-md mr-4">3.2</span>
+                <h2 class="text-2xl font-bold">人体的神经信息如何传递</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="p-4 bg-green-50 rounded-lg">
+                    <h3 class="font-bold text-green-800 mb-2">反射与反射弧</h3>
+                    <p class="text-sm italic mb-3">反射是神经调节的基本方式。结构基础是反射弧。</p>
+                    <div class="flex flex-wrap gap-2 items-center justify-center py-4">
+                        <span class="px-4 py-2 bg-white rounded shadow-sm border">感受器</span>
+                        <span>→</span>
+                        <span class="px-4 py-2 bg-white rounded shadow-sm border">传入神经</span>
+                        <span>→</span>
+                        <span class="px-4 py-2 bg-white rounded shadow-sm border text-green-600 font-bold">神经中枢</span>
+                        <span>→</span>
+                        <span class="px-4 py-2 bg-white rounded shadow-sm border">传出神经</span>
+                        <span>→</span>
+                        <span class="px-4 py-2 bg-white rounded shadow-sm border">效应器</span>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="border p-4 rounded">
+                        <h4 class="font-bold mb-2">非条件反射</h4>
+                        <p class="text-xs">生来就有，低级中枢（脊髓或脑干）参与。如：缩手反射、膝跳反射、吸吮反射。</p>
+                    </div>
+                    <div class="border p-4 rounded">
+                        <h4 class="font-bold mb-2">条件反射</h4>
+                        <p class="text-xs">后天获得，需大脑皮层参与。如：望梅止渴、谈虎色变、听到铃声进教室。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.3 章节 -->
+        <section id="section3.3" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-purple-600 text-white px-3 py-1 rounded-md mr-4">3.3</span>
+                <h2 class="text-2xl font-bold">激素与内分泌系统</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-purple-50 text-purple-900">
+                        <tr>
+                            <th class="p-3 border">内分泌腺</th>
+                            <th class="p-3 border">分泌激素</th>
+                            <th class="p-3 border">主要生理作用</th>
+                            <th class="p-3 border">相关病症</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="p-3 font-medium">垂体</td>
+                            <td class="p-3">生长激素</td>
+                            <td class="p-3">调节生长发育</td>
+                            <td class="p-3 text-xs">巨人症、矮小症（侏儒症）、肢端肥大症</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium">甲状腺</td>
+                            <td class="p-3">甲状腺激素</td>
+                            <td class="p-3">促进发育/代谢，提高神经兴奋性</td>
+                            <td class="p-3 text-xs">甲亢、呆小症、甲状腺肿大</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium">胰岛</td>
+                            <td class="p-3">胰岛素</td>
+                            <td class="p-3">调节血糖浓度（降低血糖）</td>
+                            <td class="p-3 text-xs">糖尿病、低血糖症</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium">肾上腺</td>
+                            <td class="p-3">肾上腺素</td>
+                            <td class="p-3">加快心跳，扩张血管</td>
+                            <td class="p-3 text-xs">应激反应</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3.4 章节 -->
+        <section id="section3.4" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center mb-6">
+                <span class="bg-orange-600 text-white px-3 py-1 rounded-md mr-4">3.4</span>
+                <h2 class="text-2xl font-bold">内环境的稳定与调节</h2>
+            </div>
+            <div class="space-y-4">
+                <p class="text-sm font-bold">内环境：细胞外液（血浆、组织液、淋巴等）。</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-4 border-l-4 border-orange-400 bg-orange-50">
+                        <h4 class="font-bold">体温调节</h4>
+                        <p class="text-xs">人是恒温动物。产热主要通过肌肉和肝脏；散热主要通过皮肤（辐射、传导、蒸发）。</p>
+                    </div>
+                    <div class="p-4 border-l-4 border-blue-400 bg-blue-50">
+                        <h4 class="font-bold">水分调节</h4>
+                        <p class="text-xs">主要由肾脏完成。抗利尿激素分泌增加时，肾小管对水分重吸收增强，尿量减少。</p>
+                    </div>
+                </div>
+                <div class="p-4 bg-slate-800 text-white rounded-lg text-center font-bold">
+                    反馈调节：正反馈 与 负反馈（维持稳定的核心）
+                </div>
+            </div>
+        </section>
+
+        <!-- 互动幻灯片区域 -->
+        <section id="quiz-zone" class="bg-slate-900 text-white p-6 md:p-12 rounded-3xl shadow-xl overflow-hidden relative">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-black italic tracking-tighter">THE QUIZ SHOW</h2>
+                <div class="flex space-x-2">
+                    <button onclick="switchTab('choice')" id="tab-choice" class="px-4 py-1 rounded-full bg-blue-600 text-sm">选择题 (20)</button>
+                    <button onclick="switchTab('short')" id="tab-short" class="px-4 py-1 rounded-full bg-slate-700 text-sm">简答题 (10)</button>
+                </div>
+            </div>
+
+            <!-- 选择题容器 -->
+            <div id="choice-container" class="tab-content active min-h-[400px]">
+                <div id="choice-quiz-list">
+                    <!-- JS 填充 -->
+                </div>
+                <div class="mt-8 flex justify-between">
+                    <button onclick="prevChoice()" class="px-6 py-2 bg-slate-700 rounded-lg hover:bg-slate-600">上一题</button>
+                    <span id="choice-progress" class="text-slate-400">1 / 20</span>
+                    <button onclick="nextChoice()" class="px-6 py-2 bg-blue-600 rounded-lg hover:bg-blue-500">下一题</button>
+                </div>
+            </div>
+
+            <!-- 简答题容器 -->
+            <div id="short-container" class="tab-content min-h-[400px]">
+                <div id="short-quiz-list">
+                    <!-- JS 填充 -->
+                </div>
+                <div class="mt-8 flex justify-between">
+                    <button onclick="prevShort()" class="px-6 py-2 bg-slate-700 rounded-lg hover:bg-slate-600">上一题</button>
+                    <span id="short-progress" class="text-slate-400">1 / 10</span>
+                    <button onclick="nextShort()" class="px-6 py-2 bg-purple-600 rounded-lg hover:bg-purple-500">下一题</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white py-12 border-t mt-20 text-center">
+        <p class="text-slate-500 text-sm">第3章《协调与恒定》综合复习文档</p>
+    </footer>
+
+    <script>
+        const choices = [
+            { q: "神经系统的基本结构和功能单位是？", a: "A", o: ["神经元", "脑", "神经纤维", "脊髓"] },
+            { q: "下列属于中枢神经系统的是？", a: "D", o: ["脑神经", "脊神经", "神经末梢", "脊髓"] },
+            { q: "调节人体生理活动的最高级中枢位于？", a: "B", o: ["小脑", "大脑皮层", "脑干", "脊髓"] },
+            { q: "醉酒后步态不稳，是因为酒精麻痹了？", a: "C", o: ["大脑", "脑干", "小脑", "脊髓"] },
+            { q: "反射的结构基础是？", a: "B", o: ["感受器", "反射弧", "效应器", "神经元"] },
+            { q: "下列反射中属于非条件反射的是？", a: "A", o: ["缩手反射", "谈虎色变", "画饼充饥", "闻铃声进教室"] },
+            { q: "手碰到火先缩回后感到痛，痛觉产生的部位在？", a: "D", o: ["脊髓", "手部", "传出神经", "大脑皮层"] },
+            { q: "垂体分泌的激素是？", a: "C", o: ["甲状腺激素", "胰岛素", "生长激素", "肾上腺素"] },
+            { q: "幼年时期生长激素分泌不足会导致？", a: "B", o: ["呆小症", "侏儒症", "巨人症", "肢端肥大症"] },
+            { q: "糖尿病患者通常是因为体内缺少？", a: "A", o: ["胰岛素", "甲状腺激素", "生长激素", "性激素"] },
+            { q: "甲状腺激素的主要作用不包括？", a: "D", o: ["提高神经兴奋性", "促进新陈代谢", "促进发育", "直接降低血糖"] },
+            { q: "人体内环境的稳态主要靠什么系统调节？", a: "C", o: ["消化系统", "循环系统", "神经和内分泌系统", "肌肉系统"] },
+            { q: "寒冷环境下，人体产热的主要器官是？", a: "B", o: ["心脏", "骨骼肌", "皮肤", "肺"] },
+            { q: "在炎热夏天的主要散热方式是？", a: "A", o: ["汗液蒸发", "辐射", "传导", "呼气"] },
+            { q: "抗利尿激素分泌增加时，尿量的变化是？", a: "B", o: ["增多", "减少", "不变", "停止"] },
+            { q: "胰岛素和胰高血糖素共同调节血糖，这体现了？", a: "C", o: ["协同作用", "神经调节", "反馈调节/拮抗作用", "免疫调节"] },
+            { q: "人体剧烈运动时，呼吸加快受什么部位控制？", a: "B", o: ["大脑", "脑干", "小脑", "胃"] },
+            { q: "反射弧中负责产生神经冲动的是？", a: "A", o: ["感受器", "传入神经", "神经中枢", "效应器"] },
+            { q: "成年人出现甲状腺功能亢进（甲亢），其表现是？", a: "C", o: ["智力下降", "身材矮小", "代谢亢进且食欲大增", "尿糖超标"] },
+            { q: "人在紧张时心跳加快，主要是哪种激素调节？", a: "D", o: ["胰岛素", "甲状腺激素", "生长激素", "肾上腺素"] }
+        ];
+
+        const shortAnswers = [
+            { q: "简述大脑、小脑、脑干的主要功能。", a: "大脑：智力、感觉、运动中枢；小脑：协调肌肉，维持平衡；脑干：呼吸、心跳等生命基本中枢。" },
+            { q: "请写出缩手反射的五个环节组成（反射弧）。", a: "感受器 → 传入神经 → 神经中枢（脊髓） → 传出神经 → 效应器。" },
+            { q: "比较条件反射与非条件反射的区别。", a: "非条件反射是生来就有的、固定的、低级的；条件反射是后天习得的、灵活的、需要大脑皮层参与的高级活动。" },
+            { q: "为什么说胰岛素不能口服只能注射？", a: "因为胰岛素的化学成分是蛋白质，如果口服会被胃肠道内的蛋白酶消化分解而失效。" },
+            { q: "甲状腺激素分泌过多和过少分别会导致什么典型病症？", a: "过多导致甲亢；幼年分泌过少导致呆小症（智力低下且身材矮小）。" },
+            { q: "人在寒冷环境下，身体会产生哪些反应来维持体温？", a: "骨骼肌颤抖产生热量；皮肤血管收缩减少热量散失；立毛肌收缩。" },
+            { q: "什么是“负反馈调节”？举一例说明。", a: "当某种因素引起系统偏离正常水平，系统产生反应使该因素向相反方向变化。例如：血糖升高刺激胰岛素分泌，胰岛素降低血糖，血糖降低后胰岛素分泌减少。" },
+            { q: "糖尿病患者的主要症状“三多一少”指的是什么？", a: "多尿、多饮、多食，以及体重减少。" },
+            { q: "肾脏在维持内环境水分平衡中起什么作用？", a: "肾脏通过控制尿量（调节重吸收水分的量）来维持体内水平衡。" },
+            { q: "为什么手被针刺后先缩手，后才感到痛？", a: "因为缩手反射是脊髓完成的非条件反射，路径短；而痛觉必须传导至大脑皮层，路径长且处理复杂，所以产生较慢。" }
+        ];
+
+        let currentChoiceIdx = 0;
+        let currentShortIdx = 0;
+
+        function initQuiz() {
+            // 初始化选择题
+            const cList = document.getElementById('choice-quiz-list');
+            choices.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = `quiz-card ${i === 0 ? 'active' : ''}`;
+                div.innerHTML = `
+                    <div class="mb-4 text-blue-400 font-mono">QUESTION ${i+1}</div>
+                    <p class="text-xl font-bold mb-6">${item.q}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${item.o.map((opt, idx) => `<button onclick="checkAnswer(${i}, '${String.fromCharCode(65+idx)}')" class="p-3 text-left bg-slate-800 rounded-lg hover:bg-blue-900 transition-colors border border-slate-700">${String.fromCharCode(65+idx)}. ${opt}</button>`).join('')}
+                    </div>
+                    <div id="choice-ans-${i}" class="hidden mt-6 p-4 bg-green-900/30 text-green-400 rounded-lg border border-green-700">正确答案: ${item.a}</div>
+                `;
+                cList.appendChild(div);
+            });
+
+            // 初始化简答题
+            const sList = document.getElementById('short-quiz-list');
+            shortAnswers.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = `quiz-card ${i === 0 ? 'active' : ''}`;
+                div.innerHTML = `
+                    <div class="mb-4 text-purple-400 font-mono">TOPIC ${i+1}</div>
+                    <p class="text-xl font-bold mb-6">${item.q}</p>
+                    <div class="p-6 bg-slate-800/50 border border-dashed border-slate-600 rounded-xl">
+                        <p class="text-slate-400 mb-4">请思考后查看参考答案...</p>
+                        <button onclick="toggleShortAns(${i})" class="px-4 py-2 bg-purple-600 rounded text-sm hover:bg-purple-500">点击显示/隐藏答案</button>
+                        <div id="short-ans-${i}" class="hidden mt-4 pt-4 border-t border-slate-700 text-lg text-purple-200">${item.a}</div>
+                    </div>
+                `;
+                sList.appendChild(div);
+            });
+        }
+
+        function switchTab(type) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(`${type}-container`).classList.add('active');
+            
+            document.getElementById('tab-choice').className = `px-4 py-1 rounded-full text-sm ${type === 'choice' ? 'bg-blue-600' : 'bg-slate-700'}`;
+            document.getElementById('tab-short').className = `px-4 py-1 rounded-full text-sm ${type === 'short' ? 'bg-purple-600' : 'bg-slate-700'}`;
+        }
+
+        function checkAnswer(i, userChoice) {
+            document.getElementById(`choice-ans-${i}`).classList.remove('hidden');
+        }
+
+        function toggleShortAns(i) {
+            const el = document.getElementById(`short-ans-${i}`);
+            el.classList.toggle('hidden');
+        }
+
+        function nextChoice() {
+            if (currentChoiceIdx < choices.length - 1) {
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.remove('active');
+                currentChoiceIdx++;
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+        function prevChoice() {
+            if (currentChoiceIdx > 0) {
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.remove('active');
+                currentChoiceIdx--;
+                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+
+        function nextShort() {
+            if (currentShortIdx < shortAnswers.length - 1) {
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.remove('active');
+                currentShortIdx++;
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+        function prevShort() {
+            if (currentShortIdx > 0) {
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.remove('active');
+                currentShortIdx--;
+                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.add('active');
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            document.getElementById('choice-progress').innerText = `${currentChoiceIdx + 1} / ${choices.length}`;
+            document.getElementById('short-progress').innerText = `${currentShortIdx + 1} / ${shortAnswers.length}`;
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
