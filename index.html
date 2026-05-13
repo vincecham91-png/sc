@@ -31,21 +31,29 @@
         }
         iframe {
             width: 100%;
-            height: 100vh;
+            height: 100%;
             border: none;
             display: block;
         }
     </style>
 </head>
-<body class="bg-slate-50 flex h-screen">
+<body class="bg-slate-50 flex h-screen w-full overflow-hidden">
+
+    <!-- Mobile Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-slate-900/40 z-20 hidden md:hidden backdrop-blur-sm transition-opacity" onclick="toggleSidebar()"></div>
 
     <!-- Sidebar -->
-    <aside class="w-72 glass-sidebar flex flex-col shadow-xl z-20 relative">
-        <div class="p-6 border-b border-slate-200">
-            <h1 class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 tracking-tight">
-                <i class="fa-solid fa-flask mr-2 text-blue-600"></i>科学复习系统
-            </h1>
-            <p class="text-slate-500 text-sm mt-2 font-medium">全能学习手册 & 考点测试</p>
+    <aside id="sidebar" class="w-72 glass-sidebar flex flex-col shadow-2xl md:shadow-xl z-30 fixed md:relative h-full transition-transform duration-300 -translate-x-full md:translate-x-0">
+        <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 tracking-tight">
+                    <i class="fa-solid fa-flask mr-2 text-blue-600"></i>科学复习
+                </h1>
+                <p class="text-slate-500 text-sm mt-2 font-medium">全能学习手册 & 考点测试</p>
+            </div>
+            <button onclick="toggleSidebar()" class="md:hidden text-slate-400 hover:text-slate-600 transition-colors">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
         </div>
 
         <nav class="flex-1 p-4 space-y-3 overflow-y-auto">
@@ -81,26 +89,53 @@
         </nav>
 
         <div class="p-6 border-t border-slate-200 text-center">
-            <div class="text-xs text-slate-400 mb-4 font-medium">适合本地预览及 Github Pages 部署</div>
-            <a href="https://github.com/new" target="_blank" class="inline-flex items-center justify-center w-full py-2.5 px-4 border border-slate-300 rounded-lg text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm">
-                <i class="fa-brands fa-github mr-2 text-lg"></i> 上传至 GitHub
+            <div class="text-sm font-black text-slate-800 mb-1 tracking-wide">Developed by ChamCH</div>
+            <div class="text-xs text-slate-400 mb-4 font-medium">For Github Pages Deployment</div>
+            <a href="https://github.com/vincecham91-png/sc" target="_blank" class="inline-flex items-center justify-center w-full py-2.5 px-4 border border-slate-300 rounded-lg text-sm font-bold text-slate-700 bg-white hover:bg-slate-50 hover:text-slate-900 transition-all shadow-sm">
+                <i class="fa-brands fa-github mr-2 text-lg"></i> View Source
             </a>
         </div>
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 bg-white relative">
+    <main class="flex-1 bg-white relative flex flex-col h-full w-full overflow-hidden">
+        
+        <!-- Mobile Header -->
+        <header class="md:hidden flex items-center justify-between p-4 bg-white border-b z-10 shadow-sm relative shrink-0">
+            <div class="flex items-center">
+                <i class="fa-solid fa-flask mr-2 text-blue-600 text-xl"></i>
+                <h1 class="text-lg font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 tracking-tight">科学复习系统</h1>
+            </div>
+            <button onclick="toggleSidebar()" class="text-slate-600 p-2 rounded-lg hover:bg-slate-100 transition-colors">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </header>
+
         <div id="loader" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-10 transition-opacity duration-300">
             <div class="flex flex-col items-center">
                 <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-600 mb-4"></i>
-                <p class="text-slate-600 font-bold tracking-wide">加载内容中...</p>
+                <p class="text-slate-600 font-bold tracking-wide mt-2">加载内容中...</p>
             </div>
         </div>
         
-        <iframe name="content-frame" id="content-frame" src="初二第3章复习.html" class="z-0 relative bg-white w-full h-full" onload="hideLoader()"></iframe>
+        <div class="flex-1 w-full h-full relative">
+            <iframe name="content-frame" id="content-frame" src="初二第3章复习.html" class="absolute inset-0 w-full h-full" onload="hideLoader()"></iframe>
+        </div>
     </main>
 
     <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobile-overlay');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
         function hideLoader() {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
@@ -108,10 +143,15 @@
         }
 
         function setActive(element, colorType) {
+            // Close sidebar on mobile
+            if (window.innerWidth < 768) {
+                toggleSidebar();
+            }
+
             // Show loader
             const loader = document.getElementById('loader');
             loader.style.display = 'flex';
-            // Force a reflow to ensure the display change takes effect before changing opacity
+            // Force a reflow
             void loader.offsetWidth;
             loader.style.opacity = '1';
 
@@ -119,6 +159,8 @@
             document.querySelectorAll('.nav-item').forEach(el => {
                 el.classList.remove('active');
                 el.classList.add('text-slate-700');
+                el.style.background = '';
+                el.style.boxShadow = '';
                 
                 // Restore icon colors
                 const icon = el.querySelector('.nav-icon');
@@ -132,7 +174,7 @@
             element.classList.add('active');
             element.classList.remove('text-slate-700');
             
-            // Update active item styles based on the clicked item color context
+            // Update active item styles
             if (colorType === 'emerald') {
                 element.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 element.style.boxShadow = '0 4px 15px rgba(16, 185, 129, 0.3)';
@@ -144,7 +186,7 @@
                 element.style.boxShadow = '0 4px 15px rgba(37, 99, 235, 0.3)';
             }
             
-            // Make active icon white with translucent background
+            // Make active icon white
             const icon = element.querySelector('.nav-icon');
             icon.className = 'w-10 h-10 rounded-lg bg-white/20 text-white flex items-center justify-center mr-3 nav-icon transition-colors';
         }
