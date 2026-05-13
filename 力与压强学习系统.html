@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第5章：力与压强 - 完整学习系统</title>
+    <title>第8章：力与压强 - 完整学习系统</title>
     <style>
         :root {
             --primary-color: #2b5c8f;
@@ -334,9 +334,18 @@
             20% { opacity: 1; transform: translateY(-20px) scale(1.2); }
             100% { opacity: 0; transform: translateY(-60px) scale(1); }
         }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .bg-polka {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
     </style>
 </head>
-<body>
+<body class="bg-polka min-h-screen">
 
     <!-- Sidebar Navigation -->
     <div id="sidebar">
@@ -356,7 +365,7 @@
 
         <!-- COURSE INTRO -->
         <div id="intro" class="page-section active">
-            <h1>第5章：力和压强 (压强专项学习系统)</h1>
+            <h1>第8章：力和压强 (压强专项学习系统)</h1>
             <div class="info-card" style="margin-top: 20px;">
                 <h3>🎉 欢迎来到力与压强交互式数字课本</h3>
                 <p>本系统根据提供的权威教学大纲与课堂幻灯片内容进行深度整顿，将<b>“什么是压强”</b>、<b>“液体的压强”</b>以及<b>“大气的压强”</b>三大核心章节无缝融合成统一的数字页面。您可以通过左侧导航栏随意点击并切换不同的学习版块。</p>
