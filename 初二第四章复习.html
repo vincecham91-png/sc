@@ -3,190 +3,540 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第4章 人体的呼吸 - 全能学习手册</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>第4章 人体的呼吸 - 完整学习系统</title>
     <style>
-        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; scroll-behavior: smooth; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .quiz-card { display: none; }
-        .quiz-card.active { display: block; }
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(229, 231, 235, 0.5);
+        :root {
+            --primary-color: #059669; /* Emerald-600 */
+            --accent-color: #10b981; /* Emerald-500 */
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        #sidebar {
+            width: 280px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        #sidebar h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 8px;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255,255,255,0.15);
+            color: #ffffff;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+
+        /* Main Content Container */
+        #main-content {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Layout */
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        h3 {
+            color: #444;
+            font-size: 1.15rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #4a4a4a;
+            text-align: justify;
+        }
+
+        /* Custom Cards & Highlight Boxes */
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .info-card.accent {
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .formula-box {
+            background-color: #f0fdf4;
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .math {
+            font-family: "Times New Roman", serif;
+            font-style: italic;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .example-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .example-card strong {
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Slide Container Style for Questions */
+        .slides-container {
+            position: relative;
+            background: #064e3b; /* emerald-900 */
+            color: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin-top: 20px;
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .slide-header h3 {
+            color: #6ee7b7; /* emerald-300 */
+            margin: 0;
+        }
+
+        .slide-body {
+            flex-grow: 1;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .options-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .option-item {
+            background: rgba(255,255,255,0.1);
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .option-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .option-item.correct {
+            background: #10b981 !important;
+            border-color: #34d399;
+            font-weight: bold;
+        }
+
+        .option-item.wrong {
+            background: #ef4444 !important;
+            border-color: #f87171;
+        }
+
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #059669;
+        }
+
+        .btn:disabled {
+            background-color: #64748b;
+            cursor: not-allowed;
+        }
+
+        .answer-btn {
+            background-color: #0ea5e9;
+        }
+
+        .answer-btn:hover {
+            background-color: #0284c7;
+        }
+
+        .reveal-answer {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 5px solid #34d399;
+            display: none;
+        }
+
+        /* List styling */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            #sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            #main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body>
 
-    <nav class="sticky top-0 z-50 glass-morphism shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-emerald-600">第4章 人体的呼吸</h1>
-            <div class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="#section4.1" class="hover:text-emerald-500">4.1 系统组成</a>
-                <a href="#section4.2" class="hover:text-emerald-500">4.2 呼吸运动</a>
-                <a href="#section4.3" class="hover:text-emerald-500">4.3 呼吸作用</a>
-                <a href="#section4.4" class="hover:text-emerald-500">4.4 气体交换</a>
-                <a href="#quiz-zone" class="text-red-500 font-bold hover:underline">考点测试</a>
+    <!-- Sidebar Navigation -->
+    <div id="sidebar">
+        <h2>人体的呼吸</h2>
+        <ul class="nav-menu">
+            <li class="nav-item"><a class="nav-link active" onclick="showSection('intro')">课程首页</a></li>
+            <li class="nav-item"><a class="nav-link" onclick="showSection('chap1')">4.1 系统组成</a></li>
+            <li class="nav-item"><a class="nav-link" onclick="showSection('chap2')">4.2 呼吸运动</a></li>
+            <li class="nav-item"><a class="nav-link" onclick="showSection('chap3')">4.3 呼吸作用</a></li>
+            <li class="nav-item"><a class="nav-link" onclick="showSection('chap4')">4.4 气体交换</a></li>
+            <li class="nav-item"><a class="nav-link" onclick="showSection('mcq-slides')">💻 选择题幻灯片</a></li>
+            <li class="nav-item"><a class="nav-link" onclick="showSection('saq-slides')">📝 简答题幻灯片</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+
+        <!-- COURSE INTRO -->
+        <div id="intro" class="page-section active">
+            <h1>第4章：人体的呼吸</h1>
+            <div class="info-card" style="margin-top: 20px;">
+                <h3>🎉 欢迎来到人体呼吸交互式学习系统</h3>
+                <p>本章节为您深度梳理**“呼吸系统的组成”**、**“呼吸运动的原理”**、**“呼吸作用”**以及**“体内的气体交换”**四大核心知识模块。采用全新的数字课本排版格式，您可以通过左侧导航栏自由切换。</p>
+            </div>
+            <div class="example-grid">
+                <div class="example-card">
+                    <strong>🫁 4.1 & 4.2 呼吸系统与运动</strong>
+                    <p>掌握呼吸道和肺的结构特点，深刻理解吸气与呼气过程中膈肌与胸廓容积的变化规律。</p>
+                </div>
+                <div class="example-card">
+                    <strong>⚡ 4.3 呼吸作用</strong>
+                    <p>了解细胞如何通过线粒体分解有机物，将氧气转化为二氧化碳和维持生命活动的能量。</p>
+                </div>
+                <div class="example-card">
+                    <strong>🔄 4.4 气体交换</strong>
+                    <p>探究肺泡内气体交换以及组织里气体交换的物理学扩散原理，理解血氧浓度的变化。</p>
+                </div>
             </div>
         </div>
-    </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-8">
-        
-        <section id="section4.1" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <div class="flex items-center mb-6">
-                <span class="bg-emerald-600 text-white px-3 py-1 rounded-md mr-4">4.1</span>
-                <h2 class="text-2xl font-bold">呼吸系统的组成与结构</h2>
+        <!-- SECTION 4.1 -->
+        <div id="chap1" class="page-section">
+            <h1>4.1 呼吸系统的组成与结构</h1>
+            <div class="info-card">
+                <h2>一、 呼吸道 (通道)</h2>
+                <ul>
+                    <li><b>鼻腔：</b> 鼻毛阻挡灰尘，黏膜温暖、湿润并清洁空气。</li>
+                    <li><b>咽喉：</b> 气体与食物的共同通道；<b>会厌软骨</b>防止食物误入气管。</li>
+                    <li><b>气管与支气管：</b> C型软骨支撑，纤毛分泌黏液捕捉细菌形成“痰”。</li>
+                </ul>
             </div>
-            <div class="space-y-6">
-                <div class="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-400">
-                    <h3 class="font-bold text-emerald-800 mb-2">呼吸道 (通道)</h3>
-                    <ul class="list-disc ml-5 space-y-1 text-sm">
-                        <li><strong>鼻腔：</strong> 鼻毛阻挡灰尘，黏膜温暖、湿润并清洁空气。</li>
-                        <li><strong>咽喉：</strong> 气体与食物的共同通道；<strong>会厌软骨</strong>防止食物误入气管。</li>
-                        <li><strong>气管与支气管：</strong> C型软骨支撑，纤毛分泌黏液捕捉细菌形成“痰”。</li>
-                    </ul>
-                </div>
-                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
-                    <h3 class="font-bold text-blue-800 mb-2">肺 (核心器官)</h3>
-                    <p class="text-sm">气体交换的场所。<strong>肺泡</strong>是功能单位，其特点：数量多、壁极薄（一层细胞）、外包毛细血管网。</p>
-                </div>
-            </div>
-        </section>
 
-        <section id="section4.2" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <div class="flex items-center mb-6">
-                <span class="bg-blue-600 text-white px-3 py-1 rounded-md mr-4">4.2</span>
-                <h2 class="text-2xl font-bold">呼吸运动的原理 (肺的通气)</h2>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left border-collapse">
-                    <thead class="bg-blue-600 text-white">
-                        <tr>
-                            <th class="p-3 border">过程</th>
-                            <th class="p-3 border">呼吸肌 (肋间肌/膈肌)</th>
-                            <th class="p-3 border">胸廓容积</th>
-                            <th class="p-3 border">肺内压强</th>
-                            <th class="p-3 border">结果</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y">
-                        <tr>
-                            <td class="p-3 font-bold text-blue-600">吸气</td>
-                            <td class="p-3">收缩 (膈顶下降)</td>
-                            <td class="p-3">增大</td>
-                            <td class="p-3">小于大气压</td>
-                            <td class="p-3">外界气体进入肺</td>
-                        </tr>
-                        <tr>
-                            <td class="p-3 font-bold text-red-600">呼气</td>
-                            <td class="p-3">舒张 (膈顶上升)</td>
-                            <td class="p-3">缩小</td>
-                            <td class="p-3">大于大气压</td>
-                            <td class="p-3">肺内气体排出</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="mt-4 text-xs text-slate-500 italic">注：呼吸运动实现了肺与外界的气体交换，动力来自呼吸肌的收缩舒张，原理是压强差。</p>
-        </section>
-
-        <section id="section4.3" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <div class="flex items-center mb-6">
-                <span class="bg-purple-600 text-white px-3 py-1 rounded-md mr-4">4.3</span>
-                <h2 class="text-2xl font-bold">呼吸作用 (Cellular Respiration)</h2>
-            </div>
-            <div class="space-y-4">
-                <div class="p-6 bg-slate-800 text-white rounded-xl">
-                    <p class="text-center font-mono text-lg mb-2">葡萄糖 + 氧气 → 二氧化碳 + 水 + 能量</p>
-                    <p class="text-center text-xs text-slate-400">场所：细胞（线粒体） | 实质：分解有机物，释放能量</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="border p-4 rounded-lg bg-purple-50">
-                        <h4 class="font-bold mb-2">呼吸运动</h4>
-                        <p class="text-xs">物理变化。指吸气和呼气动作，可见可控。目的是交换气体。</p>
-                    </div>
-                    <div class="border p-4 rounded-lg bg-orange-50">
-                        <h4 class="font-bold mb-2">呼吸作用</h4>
-                        <p class="text-xs">化学变化。细胞内氧化分解过程，不可见不可控。目的是提供能量。</p>
+            <div class="info-card accent">
+                <h2>二、 肺 (核心器官)</h2>
+                <p>气体交换的场所。<b>肺泡</b>是功能单位。</p>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <strong>肺泡的结构特点</strong>
+                        <p>1. 数量极大，提供了巨大的表面积。<br>
+                        2. 肺泡壁极薄（仅有一层上皮细胞构成）。<br>
+                        3. 外包绕着丰富的毛细血管网和弹性纤维，极易进行气体扩散。</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="section4.4" class="mb-16 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <div class="flex items-center mb-6">
-                <span class="bg-cyan-600 text-white px-3 py-1 rounded-md mr-4">4.4</span>
-                <h2 class="text-2xl font-bold">体内的气体交换</h2>
-            </div>
-            <div class="space-y-6">
-                <div class="grid md:grid-cols-3 gap-4 text-center">
-                    <div class="p-3 bg-cyan-50 rounded border border-cyan-100">
-                        <p class="text-xs font-bold">1. 肺的通气</p>
-                        <p class="text-[10px]">外界 ↔ 肺泡</p>
-                    </div>
-                    <div class="p-3 bg-cyan-50 rounded border border-cyan-100">
-                        <p class="text-xs font-bold">2. 肺泡内的气体交换</p>
-                        <p class="text-[10px]">肺泡 ↔ 血液 (扩散作用)</p>
-                    </div>
-                    <div class="p-3 bg-cyan-50 rounded border border-cyan-100">
-                        <p class="text-xs font-bold">3. 组织里的气体交换</p>
-                        <p class="text-[10px]">血液 ↔ 组织细胞 (扩散作用)</p>
-                    </div>
+        <!-- SECTION 4.2 -->
+        <div id="chap2" class="page-section">
+            <h1>4.2 呼吸运动的原理</h1>
+            <div class="info-card">
+                <h2>一、 肺的通气</h2>
+                <p>呼吸运动实现了肺与外界的气体交换，动力来自呼吸肌的收缩舒张，原理是压强差。</p>
+                <div class="formula-box">
+                    <strong>吸气过程：</strong><br>
+                    肋间肌和膈肌<b>收缩</b> → 膈顶下降 → 胸廓容积<b>增大</b> → 肺扩张 → 肺内压强<b>小于</b>大气压 → 外界气体进入肺。
                 </div>
-                <div class="bg-slate-50 p-4 rounded">
-                    <h4 class="font-bold text-sm mb-2">气体成分变化 (吸入 vs 呼出)</h4>
-                    <ul class="text-xs space-y-1">
-                        <li><strong>氧气：</strong> 21% → 16% (减少)</li>
-                        <li><strong>二氧化碳：</strong> 0.03% → 4% (增加约100倍)</li>
-                        <li><strong>氮气：</strong> 78% → 78% (基本不变)</li>
-                    </ul>
+                <div class="formula-box" style="background-color: #fee2e2; border-color: #ef4444;">
+                    <strong>呼气过程：</strong><br>
+                    肋间肌和膈肌<b>舒张</b> → 膈顶上升 → 胸廓容积<b>缩小</b> → 肺收缩 → 肺内压强<b>大于</b>大气压 → 肺内气体排出。
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="quiz-zone" class="bg-slate-900 text-white p-6 md:p-12 rounded-3xl shadow-xl overflow-hidden relative">
-            <div class="flex justify-between items-center mb-8">
-                <div class="flex flex-col">
-                    <h2 class="text-3xl font-black italic tracking-tighter">RESPIRATION QUIZ</h2>
-                    <p class="text-xs text-slate-400">第4章 综合能力测试</p>
-                </div>
-                <div class="flex space-x-2">
-                    <button onclick="switchTab('choice')" id="tab-choice" class="px-4 py-1 rounded-full bg-emerald-600 text-sm">选择题 (20)</button>
-                    <button onclick="switchTab('short')" id="tab-short" class="px-4 py-1 rounded-full bg-slate-700 text-sm">简答题 (10)</button>
+        <!-- SECTION 4.3 -->
+        <div id="chap3" class="page-section">
+            <h1>4.3 呼吸作用</h1>
+            <div class="info-card">
+                <h2>一、 细胞内的化学变化 (Cellular Respiration)</h2>
+                <p>呼吸作用是生物体细胞把有机物氧化分解并产生能量的过程。</p>
+                <div class="formula-box" style="text-align: center;">
+                    <span class="math">葡萄糖 + 氧气 → 二氧化碳 + 水 + 能量</span>
+                    <br><span style="font-size: 0.85rem; color: #666;">（场所：线粒体）</span>
                 </div>
             </div>
 
-            <div id="choice-container" class="tab-content active min-h-[400px]">
-                <div id="choice-quiz-list">
+            <div class="info-card accent">
+                <h2>二、 呼吸运动 vs 呼吸作用</h2>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <strong>呼吸运动</strong>
+                        <p>物理变化。指吸气和呼气动作，可见可控。目的是交换气体（引入氧气，排出二氧化碳）。</p>
                     </div>
-                <div class="mt-8 flex justify-between items-center">
-                    <button onclick="prevChoice()" class="px-6 py-2 bg-slate-700 rounded-lg hover:bg-slate-600">上一题</button>
-                    <span id="choice-progress" class="text-slate-400 font-mono">1 / 20</span>
-                    <button onclick="nextChoice()" class="px-6 py-2 bg-emerald-600 rounded-lg hover:bg-emerald-500">下一题</button>
+                    <div class="example-card">
+                        <strong>呼吸作用</strong>
+                        <p>化学变化。细胞内氧化分解过程，不可见不可控。实质是分解有机物，释放能量，目的是为生命活动提供能量。</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div id="short-container" class="tab-content min-h-[400px]">
-                <div id="short-quiz-list">
+        <!-- SECTION 4.4 -->
+        <div id="chap4" class="page-section">
+            <h1>4.4 体内的气体交换</h1>
+            <div class="info-card">
+                <h2>一、 气体交换的过程</h2>
+                <p>气体交换分为三个关键环节，后两个环节的原理都是<b>扩散作用</b>（气体由高浓度向低浓度一侧自发移动）。</p>
+                <ol>
+                    <li><b>肺的通气：</b> 外界 ↔ 肺泡（依赖呼吸运动造成的压强差）。</li>
+                    <li><b>肺泡内的气体交换：</b> 肺泡 ↔ 血液（依赖扩散作用，氧气进入血液）。</li>
+                    <li><b>组织里的气体交换：</b> 血液 ↔ 组织细胞（依赖扩散作用，氧气进入细胞被消耗）。</li>
+                </ol>
+            </div>
+            
+            <div class="info-card accent">
+                <h2>二、 气体成分的变化</h2>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <strong>吸入气体 vs 呼出气体</strong>
+                        <p>
+                        • <b>氧气：</b> 21% → 16% (显著减少)<br>
+                        • <b>二氧化碳：</b> 0.03% → 4% (增加约100倍)<br>
+                        • <b>氮气：</b> 78% → 78% (基本不变)
+                        </p>
                     </div>
-                <div class="mt-8 flex justify-between items-center">
-                    <button onclick="prevShort()" class="px-6 py-2 bg-slate-700 rounded-lg hover:bg-slate-600">上一题</button>
-                    <span id="short-progress" class="text-slate-400 font-mono">1 / 10</span>
-                    <button onclick="nextShort()" class="px-6 py-2 bg-cyan-600 rounded-lg hover:bg-cyan-500">下一题</button>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer class="bg-white py-12 border-t mt-20 text-center">
-        <p class="text-slate-500 text-sm">第4章《人体的呼吸》全能学习手册 | 科学组编制</p>
-    </footer>
+        <!-- MCQ SLIDES SECTION -->
+        <div id="mcq-slides" class="page-section">
+            <h1>💻 选择题幻灯片 (MCQ Practice)</h1>
+            <p>请点击选项进行作答，系统将实时显示答案对错与解析。</p>
+            
+            <div class="slides-container">
+                <div class="slide-header">
+                    <span style="font-weight: bold; color: #94a3b8;">第 <span id="mcq-current">1</span> / 20 题</span>
+                    <h3 id="mcq-title">考点强化测试</h3>
+                </div>
+                <div class="slide-body">
+                    <p id="mcq-question" style="color: #fff; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;"></p>
+                    <div class="options-list" id="mcq-options">
+                        <!-- Options generated dynamically -->
+                    </div>
+                    <div class="reveal-answer" id="mcq-explanation">
+                        <!-- Explanation -->
+                    </div>
+                </div>
+                <div class="slide-footer">
+                    <button class="btn" id="mcq-prev-btn" onclick="prevMCQ()" disabled>上一题</button>
+                    <button class="btn answer-btn" id="mcq-ans-btn" onclick="revealMCQAnswer()">显示答案</button>
+                    <button class="btn" id="mcq-next-btn" onclick="nextMCQ()">下一题</button>
+                </div>
+            </div>
+        </div>
 
+        <!-- SAQ SLIDES SECTION -->
+        <div id="saq-slides" class="page-section">
+            <h1>📝 简答题幻灯片 (Short Answer Slides)</h1>
+            <p>思考问题后点击“显示参考答案”，核对答题思路。</p>
+            
+            <div class="slides-container" style="background: #065f46;">
+                <div class="slide-header">
+                    <span style="font-weight: bold; color: #6ee7b7;">第 <span id="saq-current">1</span> / 10 题</span>
+                    <h3 style="color: #a7f3d0;">深度简答题</h3>
+                </div>
+                <div class="slide-body">
+                    <p id="saq-question" style="color: #fff; font-size: 1.25rem; font-weight: bold; margin-bottom: 25px;"></p>
+                    
+                    <div class="reveal-answer" id="saq-answer" style="display: none; border-left: 5px solid #34d399; background: rgba(255,255,255,0.1); color: #ecf0f1; font-size: 1.1rem; padding: 20px;">
+                        <strong>【参考答案】：</strong>
+                        <p id="saq-answer-text" style="color: #ecfdf5; margin-top: 10px;"></p>
+                    </div>
+                </div>
+                <div class="slide-footer">
+                    <button class="btn" id="saq-prev-btn" onclick="prevSAQ()" disabled>上一题</button>
+                    <button class="btn answer-btn" onclick="toggleSAQAnswer()">显示/隐藏答案</button>
+                    <button class="btn" id="saq-next-btn" onclick="nextSAQ()">下一题</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- QUESTIONS DATABASE & INTERACTIVE LOGIC -->
     <script>
-        const choices = [
+        function showSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => {
+                if (l.getAttribute('onclick').includes(sectionId)) {
+                    l.classList.add('active');
+                }
+            });
+        }
+
+        const choicesOriginal = [
             { q: "人体呼吸系统的主要器官是？", a: "C", o: ["鼻腔", "气管", "肺", "支气管"] },
             { q: "呼吸道不仅是气体通道，还能使到达肺部的气体？", a: "D", o: ["温暖", "湿润", "清洁", "以上都是"] },
             { q: "正常情况下，人体食物和气体的共同通道是？", a: "B", o: ["口腔", "咽", "喉", "食道"] },
@@ -209,7 +559,15 @@
             { q: "呼吸作用的实质是？", a: "B", o: ["吸入氧气，呼出二氧化碳", "分解有机物，释放能量", "合成有机物，贮存能量", "消耗有机物，产生水分"] }
         ];
 
-        const shortAnswers = [
+        // Format to match Chapter 5 engine
+        const mcqQuestions = choicesOriginal.map(item => ({
+            q: item.q,
+            options: item.o,
+            correct: item.a.charCodeAt(0) - 65, // Convert 'A' to 0, 'B' to 1
+            explain: "正确答案是: " + item.a + "。"
+        }));
+
+        const saqQuestions = [
             { q: "请简述肺泡适于气体交换的结构特点。", a: "1.数量多，表面积大；2.壁极薄，仅一层上皮细胞构成；3.外包绕丰富的毛细血管网和弹性纤维。" },
             { q: "为什么说用鼻呼吸比用口呼吸更科学？", a: "鼻腔内有鼻毛可以阻挡灰尘，黏膜分泌黏液可以湿润并清洁空气，黏膜内丰富的毛细血管可以温暖空气，减轻对肺的刺激。" },
             { q: "请描述吸气动作时膈肌的变化及其导致的物理结果。", a: "膈肌收缩，膈顶下降，胸廓上下径增大，胸廓容积扩大，肺随之扩张，肺内气压下降并低于大气压，外界气体进入肺。" },
@@ -222,103 +580,126 @@
             { q: "肺泡内的氧气是如何进入血液的？", a: "通过扩散作用。肺泡中氧气浓度高于血液，氧气自发地从高浓度向低浓度一侧（血液）扩散。" }
         ];
 
-        let currentChoiceIdx = 0;
-        let currentShortIdx = 0;
+        let currentMCQIndex = 0;
+        let currentSAQIndex = 0;
 
-        function initQuiz() {
-            // 初始化选择题
-            const cList = document.getElementById('choice-quiz-list');
-            choices.forEach((item, i) => {
-                const div = document.createElement('div');
-                div.className = `quiz-card ${i === 0 ? 'active' : ''}`;
-                div.innerHTML = `
-                    <div class="mb-4 text-emerald-400 font-mono text-sm">QUESTION ${i+1}</div>
-                    <p class="text-xl font-bold mb-6 leading-tight">${item.q}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        ${item.o.map((opt, idx) => `<button onclick="checkAnswer(${i}, '${String.fromCharCode(65+idx)}')" class="p-4 text-left bg-slate-800 rounded-xl hover:bg-emerald-900 transition-all border border-slate-700 hover:border-emerald-500">${String.fromCharCode(65+idx)}. ${opt}</button>`).join('')}
-                    </div>
-                    <div id="choice-ans-${i}" class="hidden mt-6 p-4 bg-emerald-900/40 text-emerald-300 rounded-lg border border-emerald-700/50">
-                        <span class="font-bold">正确答案: ${item.a}</span>
-                    </div>
-                `;
-                cList.appendChild(div);
-            });
-
-            // 初始化简答题
-            const sList = document.getElementById('short-quiz-list');
-            shortAnswers.forEach((item, i) => {
-                const div = document.createElement('div');
-                div.className = `quiz-card ${i === 0 ? 'active' : ''}`;
-                div.innerHTML = `
-                    <div class="mb-4 text-cyan-400 font-mono text-sm">CONCEPTUAL QUESTION ${i+1}</div>
-                    <p class="text-xl font-bold mb-6 leading-tight">${item.q}</p>
-                    <div class="p-6 bg-slate-800/50 border border-dashed border-slate-600 rounded-2xl">
-                        <p class="text-slate-400 mb-4 italic">请先在脑海中组织语言，然后对比参考答案：</p>
-                        <button onclick="toggleShortAns(${i})" class="px-6 py-2 bg-cyan-600 rounded-full text-sm font-bold hover:bg-cyan-500 transition-colors">显示/隐藏解析</button>
-                        <div id="short-ans-${i}" class="hidden mt-6 pt-6 border-t border-slate-700 text-lg text-cyan-100 leading-relaxed">${item.a}</div>
-                    </div>
-                `;
-                sList.appendChild(div);
-            });
-        }
-
-        function switchTab(type) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.getElementById(`${type}-container`).classList.add('active');
+        function renderMCQ() {
+            const data = mcqQuestions[currentMCQIndex];
+            document.getElementById('mcq-current').textContent = currentMCQIndex + 1;
+            document.getElementById('mcq-question').textContent = `${currentMCQIndex + 1}. ${data.q}`;
             
-            document.getElementById('tab-choice').className = `px-4 py-1 rounded-full text-sm font-bold transition-all ${type === 'choice' ? 'bg-emerald-600' : 'bg-slate-700'}`;
-            document.getElementById('tab-short').className = `px-4 py-1 rounded-full text-sm font-bold transition-all ${type === 'short' ? 'bg-cyan-600' : 'bg-slate-700'}`;
-        }
+            const optionsDiv = document.getElementById('mcq-options');
+            optionsDiv.innerHTML = '';
+            
+            data.options.forEach((opt, idx) => {
+                const li = document.createElement('div');
+                li.className = 'option-item';
+                li.innerHTML = `<strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}`;
+                li.onclick = () => checkMCQAnswer(idx, li);
+                optionsDiv.appendChild(li);
+            });
 
-        function checkAnswer(i, userChoice) {
-            document.getElementById(`choice-ans-${i}`).classList.remove('hidden');
-        }
+            const expBox = document.getElementById('mcq-explanation');
+            expBox.style.display = 'none';
+            expBox.innerHTML = '';
 
-        function toggleShortAns(i) {
-            const el = document.getElementById(`short-ans-${i}`);
-            el.classList.toggle('hidden');
-        }
-
-        function nextChoice() {
-            if (currentChoiceIdx < choices.length - 1) {
-                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.remove('active');
-                currentChoiceIdx++;
-                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.add('active');
-                updateProgress();
-            }
-        }
-        function prevChoice() {
-            if (currentChoiceIdx > 0) {
-                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.remove('active');
-                currentChoiceIdx--;
-                document.querySelectorAll('#choice-container .quiz-card')[currentChoiceIdx].classList.add('active');
-                updateProgress();
-            }
-        }
-
-        function nextShort() {
-            if (currentShortIdx < shortAnswers.length - 1) {
-                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.remove('active');
-                currentShortIdx++;
-                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.add('active');
-                updateProgress();
-            }
-        }
-        function prevShort() {
-            if (currentShortIdx > 0) {
-                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.remove('active');
-                currentShortIdx--;
-                document.querySelectorAll('#short-container .quiz-card')[currentShortIdx].classList.add('active');
-                updateProgress();
+            document.getElementById('mcq-prev-btn').disabled = (currentMCQIndex === 0);
+            const nextBtn = document.getElementById('mcq-next-btn');
+            if (currentMCQIndex === mcqQuestions.length - 1) {
+                nextBtn.textContent = "🎁 玩个游戏提神！";
+                nextBtn.disabled = false;
+                nextBtn.style.background = "#f59e0b";
+                nextBtn.onclick = function() { window.location.href = 'game.html'; };
+            } else {
+                nextBtn.textContent = "下一题";
+                nextBtn.disabled = false;
+                nextBtn.style.background = "";
+                nextBtn.onclick = nextMCQ;
             }
         }
 
-        function updateProgress() {
-            document.getElementById('choice-progress').innerText = `${currentChoiceIdx + 1} / ${choices.length}`;
-            document.getElementById('short-progress').innerText = `${currentShortIdx + 1} / ${shortAnswers.length}`;
+        function checkMCQAnswer(selectedIndex, element) {
+            const data = mcqQuestions[currentMCQIndex];
+            const optionsList = document.querySelectorAll('#mcq-options .option-item');
+            
+            optionsList.forEach(item => { item.onclick = null; });
+
+            if (selectedIndex === data.correct) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('wrong');
+                optionsList[data.correct].classList.add('correct');
+            }
+            revealMCQAnswer();
         }
 
-        window.onload = initQuiz;
+        function revealMCQAnswer() {
+            const data = mcqQuestions[currentMCQIndex];
+            const expBox = document.getElementById('mcq-explanation');
+            expBox.innerHTML = `<strong>【解析】：</strong><br><p style="color:#fff; margin-top:5px;">${data.explain}</p>`;
+            expBox.style.display = 'block';
+        }
+
+        function nextMCQ() {
+            if (currentMCQIndex < mcqQuestions.length - 1) {
+                currentMCQIndex++;
+                renderMCQ();
+            }
+        }
+
+        function prevMCQ() {
+            if (currentMCQIndex > 0) {
+                currentMCQIndex--;
+                renderMCQ();
+            }
+        }
+
+        function renderSAQ() {
+            const data = saqQuestions[currentSAQIndex];
+            document.getElementById('saq-current').textContent = currentSAQIndex + 1;
+            document.getElementById('saq-question').textContent = `${currentSAQIndex + 1}. ${data.q}`;
+            
+            document.getElementById('saq-answer').style.display = 'none';
+            document.getElementById('saq-answer-text').textContent = data.a;
+
+            document.getElementById('saq-prev-btn').disabled = (currentSAQIndex === 0);
+            const nextBtn = document.getElementById('saq-next-btn');
+            if (currentSAQIndex === saqQuestions.length - 1) {
+                nextBtn.textContent = "🎁 玩个游戏提神！";
+                nextBtn.disabled = false;
+                nextBtn.style.background = "#f59e0b";
+                nextBtn.onclick = function() { window.location.href = 'game.html'; };
+            } else {
+                nextBtn.textContent = "下一题";
+                nextBtn.disabled = false;
+                nextBtn.style.background = "";
+                nextBtn.onclick = nextSAQ;
+            }
+        }
+
+        function toggleSAQAnswer() {
+            const ansBox = document.getElementById('saq-answer');
+            ansBox.style.display = (ansBox.style.display === 'none') ? 'block' : 'none';
+        }
+
+        function nextSAQ() {
+            if (currentSAQIndex < saqQuestions.length - 1) {
+                currentSAQIndex++;
+                renderSAQ();
+            }
+        }
+
+        function prevSAQ() {
+            if (currentSAQIndex > 0) {
+                currentSAQIndex--;
+                renderSAQ();
+            }
+        }
+
+        window.onload = function() {
+            renderMCQ();
+            renderSAQ();
+        };
     </script>
 </body>
 </html>
