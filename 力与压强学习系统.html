@@ -319,6 +319,21 @@
                 padding: 20px;
             }
         }
+        
+        .score-popup {
+            position: absolute;
+            font-size: 2rem;
+            font-weight: 900;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+            z-index: 1000;
+        }
+        @keyframes floatUp {
+            0% { opacity: 0; transform: translateY(0) scale(0.5); }
+            20% { opacity: 1; transform: translateY(-20px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(-60px) scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -563,6 +578,13 @@
     <script>
         // Switch Sections in Sidebar
         function showSection(sectionId) {
+            if ((sectionId === 'mcq-slides' || sectionId === 'saq-slides') && window.parent && window.parent.studentName === "") {
+                alert("请先在首页创建熊猫角色才能答题哦！");
+                return;
+            }
+            if (sectionId === 'mcq-slides') {
+                mcqStartTime = Date.now();
+            }
             document.querySelectorAll('.page-section').forEach(section => {
                 section.classList.remove('active');
             });
@@ -830,6 +852,32 @@
         ];
 
         // Slide State Keepers
+        let mcqStartTime = 0;
+        
+        window.unlockQuiz = function() {
+            if(document.getElementById('mcq-slides').classList.contains('active')) {
+                mcqStartTime = Date.now();
+            }
+        };
+
+        function showScorePopup(points, text, element) {
+            const popup = document.createElement('div');
+            popup.className = 'score-popup';
+            const color = points > 0 ? '#10b981' : '#ef4444';
+            const sign = points > 0 ? '+' : '';
+            popup.innerHTML = `<span style="color:${color}">${sign}${points}</span><br><span style="font-size:1rem; color:#fff">${text}</span>`;
+            
+            const rect = element.getBoundingClientRect();
+            popup.style.left = (rect.left + rect.width/2 - 40) + 'px';
+            popup.style.top = (rect.top - 20) + 'px';
+            
+            document.body.appendChild(popup);
+            setTimeout(() => popup.remove(), 1000);
+            
+            if(window.parent && window.parent.updateScore) {
+                window.parent.updateScore(points);
+            }
+        }
         let currentMCQIndex = 0;
         let currentSAQIndex = 0;
 
@@ -855,7 +903,7 @@
             expBox.style.display = 'none';
             expBox.innerHTML = '';
 
-            // Handle Buttons
+            mcqStartTime = Date.now();
             document.getElementById('mcq-prev-btn').disabled = (currentMCQIndex === 0);
             document.getElementById('mcq-next-btn').disabled = (currentMCQIndex === mcqQuestions.length - 1);
         }
@@ -869,13 +917,24 @@
                 item.onclick = null; // disable further clicks
             });
 
+            const timeTaken = (Date.now() - mcqStartTime) / 1000;
+            let points = 0;
+            let msg = "";
+
             if (selectedIndex === data.correct) {
                 element.classList.add('correct');
+                if (timeTaken <= 3) { points = 20; msg = "⚡极速！"; }
+                else if (timeTaken <= 5) { points = 10; msg = "⏱️快速！"; }
+                else if (timeTaken <= 10) { points = 5; msg = "👍不错！"; }
+                else { points = 0; msg = "🐌超时无分"; }
             } else {
                 element.classList.add('wrong');
-                // Highlight the correct one
                 optionsList[data.correct].classList.add('correct');
+                points = -20;
+                msg = "❌扣分";
             }
+            
+            showScorePopup(points, msg, element);
 
             revealMCQAnswer();
         }
