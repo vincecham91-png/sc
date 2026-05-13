@@ -42,6 +42,52 @@
     <!-- Mobile Overlay -->
     <div id="mobile-overlay" class="fixed inset-0 bg-slate-900/40 z-20 hidden md:hidden backdrop-blur-sm transition-opacity" onclick="toggleSidebar()"></div>
 
+    <!-- REGISTRATION MODAL -->
+    <div id="registration-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-50 flex items-center justify-center transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 transform transition-transform duration-300 scale-100">
+            <h2 class="text-2xl font-black text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">🌟 创建你的学习角色</h2>
+            <p class="text-slate-500 text-center text-sm mb-6">请输入名字并选择你的专属熊猫吉祥物，准备开始挑战！</p>
+            
+            <div class="mb-5">
+                <label class="block text-sm font-bold text-slate-700 mb-2">你的名字</label>
+                <input type="text" id="student-name-input" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" placeholder="例如：张小明">
+            </div>
+            
+            <label class="block text-sm font-bold text-slate-700 mb-2">选择吉祥物</label>
+            <div class="grid grid-cols-4 gap-3 mb-8" id="avatar-selection">
+                <div class="avatar-option cursor-pointer rounded-xl border-2 border-blue-500 bg-blue-50 p-2 text-center transition-all" onclick="selectAvatar('panda_scientist.png', this)">
+                    <img src="assets/panda_scientist.png" class="w-16 h-16 rounded-full mx-auto shadow-sm object-cover bg-white" alt="Scientist">
+                </div>
+                <div class="avatar-option cursor-pointer rounded-xl border-2 border-transparent hover:border-pink-300 p-2 text-center transition-all" onclick="selectAvatar('panda_doctor.png', this)">
+                    <img src="assets/panda_doctor.png" class="w-16 h-16 rounded-full mx-auto shadow-sm object-cover bg-white" alt="Doctor">
+                </div>
+                <div class="avatar-option cursor-pointer rounded-xl border-2 border-transparent hover:border-orange-300 p-2 text-center transition-all" onclick="selectAvatar('panda_astronaut.png', this)">
+                    <img src="assets/panda_astronaut.png" class="w-16 h-16 rounded-full mx-auto shadow-sm object-cover bg-white" alt="Astronaut">
+                </div>
+                <div class="avatar-option cursor-pointer rounded-xl border-2 border-transparent hover:border-green-300 p-2 text-center transition-all" onclick="selectAvatar('panda_explorer.png', this)">
+                    <img src="assets/panda_explorer.png" class="w-16 h-16 rounded-full mx-auto shadow-sm object-cover bg-white" alt="Explorer">
+                </div>
+            </div>
+            
+            <button onclick="submitRegistration()" class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 transition-all">
+                🚀 开始学习之旅！
+            </button>
+        </div>
+    </div>
+
+    <!-- LEADERBOARD WIDGET -->
+    <div id="leaderboard-widget" class="fixed bottom-6 right-6 z-40 bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl rounded-2xl w-72 overflow-hidden hidden transform transition-all duration-500 translate-y-4 opacity-0">
+        <div class="bg-gradient-to-r from-indigo-600 to-blue-600 p-3 flex justify-between items-center cursor-pointer" onclick="toggleLeaderboard()">
+            <h3 class="text-white font-bold text-sm"><i class="fa-solid fa-trophy text-yellow-300 mr-2"></i> 学霸风云榜</h3>
+            <i id="lb-chevron" class="fa-solid fa-chevron-down text-white/80 text-xs transition-transform"></i>
+        </div>
+        <div id="lb-content" class="p-3 transition-all duration-300" style="display: block;">
+            <ul id="lb-list" class="space-y-2">
+                <!-- Dynamically populated -->
+            </ul>
+        </div>
+    </div>
+
     <!-- Sidebar -->
     <aside id="sidebar" class="w-72 glass-sidebar flex flex-col shadow-2xl md:shadow-xl z-30 fixed md:relative h-full transition-transform duration-300 -translate-x-full md:translate-x-0">
         <div class="p-6 border-b border-slate-200 flex justify-between items-center">
@@ -124,6 +170,104 @@
     </main>
 
     <script>
+        // GLOBAL STATE FOR GAMIFICATION
+        window.studentName = "";
+        window.studentAvatar = "";
+        window.studentScore = 0;
+        
+        let leaderboardData = [
+            { name: "学霸小明", avatar: "assets/panda_astronaut.png", score: 150 },
+            { name: "班长小红", avatar: "assets/panda_doctor.png", score: 85 },
+            { name: "课代表", avatar: "assets/panda_explorer.png", score: 45 }
+        ];
+
+        let selectedAvatarPath = "assets/panda_scientist.png"; // default
+        
+        function selectAvatar(filename, el) {
+            selectedAvatarPath = "assets/" + filename;
+            document.querySelectorAll('.avatar-option').forEach(opt => {
+                opt.classList.remove('border-blue-500', 'bg-blue-50');
+                opt.classList.add('border-transparent');
+            });
+            el.classList.remove('border-transparent');
+            el.classList.add('border-blue-500', 'bg-blue-50');
+        }
+
+        function submitRegistration() {
+            const nameInput = document.getElementById('student-name-input').value.trim();
+            if (!nameInput) {
+                alert("请输入你的名字哦！");
+                return;
+            }
+            window.studentName = nameInput;
+            window.studentAvatar = selectedAvatarPath;
+            window.studentScore = 0;
+            
+            // Hide modal
+            const modal = document.getElementById('registration-modal');
+            modal.style.opacity = '0';
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
+            
+            // Show leaderboard
+            leaderboardData.push({ name: window.studentName, avatar: window.studentAvatar, score: window.studentScore, isMe: true });
+            renderLeaderboard();
+            
+            const lbWidget = document.getElementById('leaderboard-widget');
+            lbWidget.classList.remove('hidden');
+            setTimeout(() => {
+                lbWidget.classList.remove('translate-y-4', 'opacity-0');
+            }, 100);
+        }
+
+        function toggleLeaderboard() {
+            const content = document.getElementById('lb-content');
+            const icon = document.getElementById('lb-chevron');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.display = 'none';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function renderLeaderboard() {
+            leaderboardData.sort((a, b) => b.score - a.score);
+            const list = document.getElementById('lb-list');
+            list.innerHTML = '';
+            
+            leaderboardData.forEach((player, index) => {
+                const isMe = player.isMe ? 'bg-blue-50 border border-blue-100' : '';
+                const rankColor = index === 0 ? 'text-yellow-500' : index === 1 ? 'text-slate-400' : index === 2 ? 'text-amber-600' : 'text-slate-300';
+                
+                list.innerHTML += `
+                    <li class="flex items-center justify-between p-2 rounded-lg ${isMe} transition-all">
+                        <div class="flex items-center">
+                            <span class="w-5 font-bold ${rankColor} text-sm mr-1">${index + 1}</span>
+                            <img src="${player.avatar}" class="w-8 h-8 rounded-full shadow-sm mr-2 border border-slate-200 object-cover bg-white">
+                            <span class="text-sm font-bold text-slate-700 ${player.isMe ? 'text-blue-700' : ''}">${player.name}</span>
+                        </div>
+                        <span class="text-sm font-black ${player.score < 0 ? 'text-red-500' : 'text-emerald-500'}">${player.score}</span>
+                    </li>
+                `;
+            });
+        }
+
+        // Exposed function for iframes to call
+        window.updateScore = function(points) {
+            window.studentScore += points;
+            const myData = leaderboardData.find(p => p.isMe);
+            if(myData) myData.score = window.studentScore;
+            
+            renderLeaderboard();
+            
+            // Pop effect
+            const lbWidget = document.getElementById('leaderboard-widget');
+            lbWidget.style.transform = 'scale(1.05)';
+            setTimeout(() => { lbWidget.style.transform = 'scale(1)'; }, 200);
+        };
+
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('mobile-overlay');
