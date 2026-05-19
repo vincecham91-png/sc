@@ -648,6 +648,13 @@
                 window.parent.updateScore(points);
             }
         }
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
+
         let currentMCQIndex = 0;
         let currentSAQIndex = 0;
 
@@ -672,18 +679,30 @@
             expBox.innerHTML = '';
 
             mcqStartTime = Date.now();
-            document.getElementById('mcq-prev-btn').disabled = (currentMCQIndex === 0);
+            const prevBtn = document.getElementById('mcq-prev-btn');
             const nextBtn = document.getElementById('mcq-next-btn');
             if (currentMCQIndex === mcqQuestions.length - 1) {
                 nextBtn.textContent = "🎁 玩个游戏提神！";
                 nextBtn.disabled = false;
                 nextBtn.style.background = "#f59e0b";
                 nextBtn.onclick = function() { window.location.href = 'game.html'; };
+                prevBtn.textContent = "🔄 重新开始";
+                prevBtn.disabled = false;
+                prevBtn.style.background = "#6366f1";
+                prevBtn.onclick = function() {
+                    currentMCQIndex = 0;
+                    shuffleArray(mcqQuestions);
+                    renderMCQ();
+                };
             } else {
                 nextBtn.textContent = "下一题";
                 nextBtn.disabled = false;
                 nextBtn.style.background = "";
                 nextBtn.onclick = nextMCQ;
+                prevBtn.textContent = "上一题";
+                prevBtn.disabled = (currentMCQIndex === 0);
+                prevBtn.style.background = "";
+                prevBtn.onclick = prevMCQ;
             }
         }
 
@@ -743,18 +762,30 @@
             document.getElementById('saq-answer').style.display = 'none';
             document.getElementById('saq-answer-text').textContent = data.a;
 
-            document.getElementById('saq-prev-btn').disabled = (currentSAQIndex === 0);
+            const prevBtnSAQ = document.getElementById('saq-prev-btn');
             const nextBtn = document.getElementById('saq-next-btn');
             if (currentSAQIndex === saqQuestions.length - 1) {
                 nextBtn.textContent = "🎁 玩个游戏提神！";
                 nextBtn.disabled = false;
                 nextBtn.style.background = "#f59e0b";
                 nextBtn.onclick = function() { window.location.href = 'game.html'; };
+                prevBtnSAQ.textContent = "🔄 重新开始";
+                prevBtnSAQ.disabled = false;
+                prevBtnSAQ.style.background = "#6366f1";
+                prevBtnSAQ.onclick = function() {
+                    currentSAQIndex = 0;
+                    shuffleArray(saqQuestions);
+                    renderSAQ();
+                };
             } else {
                 nextBtn.textContent = "下一题";
                 nextBtn.disabled = false;
                 nextBtn.style.background = "";
                 nextBtn.onclick = nextSAQ;
+                prevBtnSAQ.textContent = "上一题";
+                prevBtnSAQ.disabled = (currentSAQIndex === 0);
+                prevBtnSAQ.style.background = "";
+                prevBtnSAQ.onclick = prevSAQ;
             }
         }
 
@@ -778,6 +809,8 @@
         }
 
         window.onload = function() {
+            shuffleArray(mcqQuestions);
+            shuffleArray(saqQuestions);
             renderMCQ();
             renderSAQ();
         };
